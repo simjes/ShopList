@@ -3,6 +3,8 @@
     <!-- the theme applied to the application or activity -->
     <style name="CustomTheme" parent="@android:style/Theme.Material">
         <item name="android:actionBarStyle">@style/CustomActionBar</item>
+        <item name="android:colorBackground">@color/lightPrimaryColor</item>
+        <item name="android:statusBarColor">@color/darkPrimaryColor</item>
     </style>
 
     <!-- ActionBar styles -->

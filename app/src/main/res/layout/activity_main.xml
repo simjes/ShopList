@@ -4,6 +4,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
@@ -22,15 +23,22 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/addicon" />
+            android:background="@drawable/addicon"
+            android:onClick="addItem" />
 
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/clearicon" />
+            android:background="@drawable/clearicon"
+            android:onClick="clearText" />
     </LinearLayout>
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout"
+        android:scrollbars="vertical" />
 </RelativeLayout>
