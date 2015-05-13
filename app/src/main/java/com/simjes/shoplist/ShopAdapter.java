@@ -13,10 +13,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public View divider;
 
-        public ViewHolder(TextView v) {
+        public ViewHolder(View v) {
             super(v);
-            textView = v;
+            textView = (TextView) v.findViewById(R.id.itemTextView);
+            divider = v.findViewById(R.id.dividerLine);
         }
     }
 
@@ -27,15 +29,14 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
     @Override
     public ShopAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.customtextview, parent, false);
-        TextView tv = (TextView) v.findViewById(R.id.tv);
-
-        ViewHolder vh = new ViewHolder(tv);
+        ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.textView.setText(dataset.get(i));
+        viewHolder.divider.setVisibility(View.VISIBLE);
     }
 
     @Override

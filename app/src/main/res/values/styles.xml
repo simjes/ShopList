@@ -3,7 +3,7 @@
     <!-- the theme applied to the application or activity -->
     <style name="CustomTheme" parent="@android:style/Theme.Material">
         <item name="android:actionBarStyle">@style/CustomActionBar</item>
-        <item name="android:colorBackground">@color/lightPrimaryColor</item>
+        <item name="android:colorBackground">@color/whiteText</item>
         <item name="android:statusBarColor">@color/darkPrimaryColor</item>
     </style>
 
@@ -13,12 +13,5 @@
         <item name="android:windowBackground">@color/primaryColor</item>
         <item name="android:elevation">2dp</item>
     </style>
-
-
-    <!-- <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:colorBackground">@color/dividerColor</item>
-    </style> -->
 
 </resources>

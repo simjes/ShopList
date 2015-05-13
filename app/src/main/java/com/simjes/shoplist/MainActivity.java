@@ -58,9 +58,11 @@ public class MainActivity extends Activity {
     }
 
     public void addItem(View v) {
-        dataset.add(editText.getText().toString());
-        editText.setText("");
-        adapter.notifyDataSetChanged();
+        if (!editText.getText().toString().equals("")) {
+            dataset.add(editText.getText().toString());
+            editText.setText("");
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void clearText(View v) {
