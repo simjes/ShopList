@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ShopAdapter(dataset);
+        adapter = new ShopAdapter(dataset, this);
         recyclerView.setAdapter(adapter);
         editText = (EditText) findViewById(R.id.inputField);
     }

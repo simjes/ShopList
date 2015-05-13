@@ -56,4 +56,5 @@ public class SwipeListener implements OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         return gestureDetector.onTouchEvent(event);
     }
+
 }
