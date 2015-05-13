@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ShopList</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="input_hint">Item</string>
     <string name="action_settings">Settings</string>
+    <string name="add_icon_desc">Icon for adding items</string>
+    <string name="clear_icon_desc">Icon for clearing text from input</string>
 </resources>
