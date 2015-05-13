@@ -47,8 +47,9 @@ public class ShopAdapter extends Adapter<ShopAdapter.ViewHolder> {
                 Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
                 view.startAnimation(animation);
 
+                int pos = dataset.indexOf(tv.getText().toString());
                 dataset.remove(tv.getText().toString());
-                notifyDataSetChanged();
+                notifyItemRemoved(pos);
             }
         });
         ViewHolder vh = new ViewHolder(v);

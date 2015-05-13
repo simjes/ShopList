@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
         if (!editText.getText().toString().equals("")) {
             dataset.add(editText.getText().toString());
             editText.setText("");
-            adapter.notifyDataSetChanged();
+            adapter.notifyItemInserted(adapter.getItemCount());
         }
     }
 
