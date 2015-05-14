@@ -1,4 +1,4 @@
-package com.simjes.shoplist;
+package com.simjes.shoplist.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,13 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
+import com.simjes.shoplist.listeners.KeyboardListener;
+import com.simjes.shoplist.R;
+import com.simjes.shoplist.adapters.ShopAdapter;
+
 import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> dataset;
     private EditText editText;
 
@@ -23,13 +25,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         dataset = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
         adapter = new ShopAdapter(dataset, this);
         recyclerView.setAdapter(adapter);
         editText = (EditText) findViewById(R.id.inputField);
+        editText.setOnEditorActionListener(new KeyboardListener(this));
     }
 
     /*@Override

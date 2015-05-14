@@ -19,6 +19,8 @@
             android:layout_weight="1"
             android:elevation="2dp"
             android:hint="@string/input_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:textSize="30sp" />
 
         <ImageButton

@@ -1,4 +1,4 @@
-package com.simjes.shoplist;
+package com.simjes.shoplist.listeners;
 
 import android.content.Context;
 import android.view.GestureDetector;
@@ -18,7 +18,7 @@ public class SwipeListener implements OnTouchListener {
     }
 
     private final class GestureListener extends SimpleOnGestureListener {
-        private static final int SWIPE_THRESHOLD = 50;
+        private static final int SWIPE_THRESHOLD = 20;
         private static final int SWIPE_VELOCITY_THRESHOLD = 50;
 
         @Override

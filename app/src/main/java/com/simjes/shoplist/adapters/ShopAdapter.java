@@ -1,4 +1,4 @@
-package com.simjes.shoplist;
+package com.simjes.shoplist.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.simjes.shoplist.R;
+import com.simjes.shoplist.listeners.SwipeListener;
 
 import java.util.ArrayList;
 
