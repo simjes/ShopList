@@ -49,21 +49,23 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
         String allItems = "";
-        try {
-            FileInputStream fileInputStream = openFileInput(FILENAME);
-            byte[] itemsInBytes = new byte[fileInputStream.available()];
-            if (itemsInBytes.length > 0) {
-                while (fileInputStream.read(itemsInBytes) != -1) {
+        if (dataset.isEmpty()) {
+            try {
+                FileInputStream fileInputStream = openFileInput(FILENAME);
+                byte[] itemsInBytes = new byte[fileInputStream.available()];
+                if (itemsInBytes.length > 0) {
+                    while (fileInputStream.read(itemsInBytes) != -1) {
+                    }
+                    allItems += new String(itemsInBytes);
+                    String[] allItemsArray = allItems.split(";");
+                    dataset.addAll(Arrays.asList(allItemsArray));
                 }
-                allItems += new String(itemsInBytes);
-                String[] allItemsArray = allItems.split(";");
-                dataset.addAll(Arrays.asList(allItemsArray));
+                fileInputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            fileInputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
