@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="5dp"
-        android:background="@color/primaryColor"
+        android:background="@color/listBackgroundColor"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
-        android:textColor="@color/whiteText"
+        android:textColor="@color/primaryText"
         android:textSize="20sp" />
 
     <Space
@@ -32,5 +32,5 @@
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/lightPrimaryColor" />
+        android:background="@color/dividerColor" />
 </LinearLayout>
