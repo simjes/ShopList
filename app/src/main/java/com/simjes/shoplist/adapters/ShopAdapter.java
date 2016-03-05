@@ -40,7 +40,6 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
     @Override
     public void onBindViewHolder(final ItemViewHolder viewHolder, int i) {
         viewHolder.textView.setText(items.get(i));
-        viewHolder.divider.setVisibility(View.VISIBLE);
         viewHolder.handleView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -75,13 +74,11 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchViewHolder {
         public TextView textView;
         public ImageView handleView;
-        public View divider;
 
         public ItemViewHolder(View v) {
             super(v);
             textView = (TextView) v.findViewById(R.id.itemTextView);
             handleView = (ImageView) itemView.findViewById(R.id.handle);
-            divider = v.findViewById(R.id.dividerLine);
         }
 
         @Override
