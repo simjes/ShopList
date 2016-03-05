@@ -1,81 +1,97 @@
 package com.simjes.shoplist.adapters;
 
-import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.simjes.shoplist.R;
-import com.simjes.shoplist.listeners.SwipeListener;
+import com.simjes.shoplist.helper.ItemTouchHelperAdapter;
+import com.simjes.shoplist.helper.ItemTouchViewHolder;
+import com.simjes.shoplist.helper.OnStartDragListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class ShopAdapter extends Adapter<ShopAdapter.ViewHolder> {
+public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
 
-    private ArrayList<String> dataset;
-    private int lastPosition = -1;
-    private Context context;
+    private ArrayList<String> items;
+    private OnStartDragListener startDragListener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
-        public View divider;
-        public LinearLayout itemLayout;
 
-        public ViewHolder(View v) {
-            super(v);
-            textView = (TextView) v.findViewById(R.id.itemTextView);
-            divider = v.findViewById(R.id.dividerLine);
-            itemLayout = (LinearLayout) v.findViewById(R.id.itemLayout);
-        }
-    }
-
-    public ShopAdapter(ArrayList<String> dataset, Context context) {
-        this.dataset = dataset;
-        this.context = context;
+    public ShopAdapter(ArrayList<String> items, OnStartDragListener startDragListener) {
+        this.items = items;
+        this.startDragListener = startDragListener;
     }
 
     @Override
-    public ShopAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+    public ShopAdapter.ItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.customtextview, parent, false);
-        v.setOnTouchListener(new SwipeListener(parent.getContext(), v) {
-            @Override
-            public void onSwipeRight() {
-                TextView tv = (TextView) view.findViewById(R.id.itemTextView);
-                Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
-                view.startAnimation(animation);
-
-                int pos = dataset.indexOf(tv.getText().toString());
-                dataset.remove(tv.getText().toString());
-                notifyItemRemoved(pos);
-            }
-        });
-        ViewHolder vh = new ViewHolder(v);
+        ItemViewHolder vh = new ItemViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        viewHolder.textView.setText(dataset.get(i));
+    public void onBindViewHolder(final ItemViewHolder viewHolder, int i) {
+        viewHolder.textView.setText(items.get(i));
         viewHolder.divider.setVisibility(View.VISIBLE);
-        setAnimation(viewHolder.itemLayout, i);
+        viewHolder.handleView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    startDragListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
     }
 
-    private void setAnimation(View view, int position) {
-        if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
-            view.startAnimation(animation);
-            lastPosition = position;
-        }
-    }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return items.size();
+    }
+
+    @Override
+    public boolean onItemMove(int fromPos, int toPos) {
+        Collections.swap(items, fromPos, toPos);
+        notifyItemMoved(fromPos, toPos);
+        return true;
+    }
+
+    @Override
+    public void onItemDismiss(int pos) {
+        items.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchViewHolder {
+        public TextView textView;
+        public ImageView handleView;
+        public View divider;
+
+        public ItemViewHolder(View v) {
+            super(v);
+            textView = (TextView) v.findViewById(R.id.itemTextView);
+            handleView = (ImageView) itemView.findViewById(R.id.handle);
+            divider = v.findViewById(R.id.dividerLine);
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(0);
+        }
     }
 }

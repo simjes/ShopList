@@ -20,6 +20,14 @@
         android:textColor="@color/primaryText"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:scaleType="center"
+        android:src="@drawable/clearicon" />
+
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
