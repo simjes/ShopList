@@ -3,6 +3,7 @@ package com.simjes.shoplist.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 
 // For RecyclerView touch events and animations: https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-6a6f0c422efd#.2rnoufxac
 
-public class MainActivity extends Activity implements OnStartDragListener {
+public class MainActivity extends AppCompatActivity implements OnStartDragListener {
     private static final String FILENAME = "ShopListItems";
 
     private ShopAdapter adapter;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements OnStartDragListener {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ShopAdapter(items, this);
+        adapter = new ShopAdapter(items, this, this);
         recyclerView.setAdapter(adapter);
 
         ItemTouchHelper.Callback callback = new SimpleTouchHelperCallback(adapter);

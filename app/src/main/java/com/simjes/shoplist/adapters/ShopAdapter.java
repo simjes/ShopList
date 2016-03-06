@@ -1,14 +1,19 @@
 package com.simjes.shoplist.adapters;
 
+import android.app.Activity;
 import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.simjes.shoplist.R;
@@ -23,11 +28,12 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
 
     private ArrayList<String> items;
     private OnStartDragListener startDragListener;
+    private CoordinatorLayout snackbarLayout;
 
-
-    public ShopAdapter(ArrayList<String> items, OnStartDragListener startDragListener) {
+    public ShopAdapter(ArrayList<String> items, OnStartDragListener startDragListener, Activity activity) {
         this.items = items;
         this.startDragListener = startDragListener;
+        this.snackbarLayout = (CoordinatorLayout) activity.findViewById(R.id.snackbarView);
     }
 
     @Override
@@ -67,8 +73,10 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
 
     @Override
     public void onItemDismiss(int pos) {
+        String removedItem = items.get(pos);
         items.remove(pos);
         notifyItemRemoved(pos);
+        Snackbar.make(snackbarLayout, removedItem + " was removed.", Snackbar.LENGTH_LONG);
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
