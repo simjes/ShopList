@@ -1,7 +1,7 @@
 package com.simjes.shoplist.helper;
 
 
-public interface ItemTouchViewHolder {
+public interface ItemTouchHelperViewHolder {
     void onItemSelected();
 
     void onItemClear();

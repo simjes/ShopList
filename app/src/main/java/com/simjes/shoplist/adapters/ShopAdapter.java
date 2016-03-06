@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.simjes.shoplist.R;
 import com.simjes.shoplist.helper.ItemTouchHelperAdapter;
-import com.simjes.shoplist.helper.ItemTouchViewHolder;
+import com.simjes.shoplist.helper.ItemTouchHelperViewHolder;
 import com.simjes.shoplist.helper.OnStartDragListener;
 
 import java.util.ArrayList;
@@ -71,13 +71,13 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
         notifyItemRemoved(pos);
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchViewHolder {
+    public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         public TextView textView;
         public ImageView handleView;
 
-        public ItemViewHolder(View v) {
-            super(v);
-            textView = (TextView) v.findViewById(R.id.itemTextView);
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.itemTextView);
             handleView = (ImageView) itemView.findViewById(R.id.handle);
         }
 

@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// For RecyclerView touch events and animations: https://medium.com/@ipaulpro/drag-and-swipe-with-recyclerview-6a6f0c422efd#.2rnoufxac
+
 public class MainActivity extends Activity implements OnStartDragListener {
     private static final String FILENAME = "ShopListItems";
 
