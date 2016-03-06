@@ -7,20 +7,21 @@
         android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/backgroundColor"
+        android:background="@color/backgroundLightDark"
+        android:elevation="1dp"
         android:paddingBottom="5dp">
 
         <EditText
             android:id="@+id/inputField"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryRed"
             android:hint="@string/input_hint"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:textColor="@color/primaryText"
             android:textColorHint="@color/secondaryText"
             android:textSize="30sp" />
-
     </LinearLayout>
 
 

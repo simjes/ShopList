@@ -3,7 +3,7 @@
     android:id="@+id/itemLayout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/listBackgroundColor"
+    android:background="@color/backgroundDark"
     android:orientation="vertical">
 
     <Space
@@ -34,8 +34,7 @@
             android:layout_weight="1"
             android:alpha="0.5"
             android:scaleType="center"
-            android:src="@drawable/ic_drag_handle_black_18dp" />
-
+            android:src="@drawable/ic_drag_handle_white_18dp" />
     </LinearLayout>
 
     <Space

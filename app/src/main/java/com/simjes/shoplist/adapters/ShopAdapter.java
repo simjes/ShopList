@@ -1,8 +1,10 @@
 package com.simjes.shoplist.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -27,19 +29,21 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
     private ArrayList<String> items;
     private OnStartDragListener startDragListener;
     private CoordinatorLayout snackbarLayout;
+    private Activity activity;
     private String removedItem;
     private int removedItemPos;
 
     public ShopAdapter(ArrayList<String> items, OnStartDragListener startDragListener, Activity activity) {
         this.items = items;
         this.startDragListener = startDragListener;
+        this.activity = activity;
         this.snackbarLayout = (CoordinatorLayout) activity.findViewById(R.id.snackbarView);
     }
 
     @Override
     public ShopAdapter.ItemViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.customtextview, parent, false);
-        ItemViewHolder vh = new ItemViewHolder(v);
+        ItemViewHolder vh = new ItemViewHolder(v, activity.getApplicationContext());
         return vh;
     }
 
@@ -91,16 +95,19 @@ public class ShopAdapter extends Adapter<ShopAdapter.ItemViewHolder> implements 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         public TextView textView;
         public ImageView handleView;
+        public Context context;
 
-        public ItemViewHolder(View itemView) {
+        public ItemViewHolder(View itemView, Context context) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.itemTextView);
             handleView = (ImageView) itemView.findViewById(R.id.handle);
+            this.context = context;
         }
 
         @Override
         public void onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY);
+            itemView.setBackgroundColor(context.getResources().getColor(R.color.backgroundLightDark));
+
         }
 
         @Override
